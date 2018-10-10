@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Movie } from './movie';
+import { Movie } from '../movie';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class MovieserviceService {
   private moviesapi = 'http://www.omdbapi.com/?i=tt3896198&apikey=9844614a'; 
   constructor(private http: HttpClient) { }
 
-  getMoviesapi(): Observable<Object[]> {
-    return this.http.get<Object[]>(this.moviesapi)
+  getMoviesapi(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.moviesapi)
          .pipe(
         tap(res => console.log('fetched Movies')),
         catchError(this.handleError('getMovies', []))
@@ -22,7 +22,7 @@ export class MovieserviceService {
   }
     private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.log(error); // log to console instead
+      console.log(error);
       console.log(`${operation} failed: ${error.message}`);
       return of(result as T);
     };

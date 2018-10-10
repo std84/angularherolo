@@ -6,7 +6,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { MovieserviceService } from './services/movieservice.service';
 
 import { MoviesDBService } from './services/movies-db.service';
-
+import { Movie } from './movie';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +15,9 @@ import { MoviesDBService } from './services/movies-db.service';
 })
 export class AppComponent {
   title = 'angulartestone';
-    movies: Object[] = [];
-    movietmp: Object[] = [];
- movie: Object;
+    movies: Movie[] = [];
+    movietmp: Movie[] = [];
+ movie: Movie;
  searchtext: string;
   constructor( private modalService: NgbModal, private movieService: MovieserviceService ,private movieDbService: MoviesDBService ) { }
   ngOnInit() {
@@ -51,10 +51,9 @@ export class AppComponent {
   }
   search(){
   this.movietmp=this.movies;
-
   var checktext=this.searchtext;
-    var yahooOnly = this.movies.filter(function (entry) {
-       
+    var yahooOnly = this.movies.filter(function (i,n){
+        return i.Title===checktext;
     });
     this.movies = yahooOnly;
   }

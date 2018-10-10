@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovieserviceService } from '../services/movieservice.service';
 
 import { MoviesDBService } from '../services/movies-db.service';
-
+import { Movie } from '../movie';
 @Component({
   selector: 'app-delete-modal',
   templateUrl: './delete-modal.component.html',
@@ -15,7 +15,7 @@ export class DeleteModalComponent {
  
 
   @Input() id: number;
-  isNotEmpty: bool;
+  isNotEmpty: boolean;
   movie: Movie;
   moadleTitle: string;
   constructor(  public activeModal: NgbActiveModal,private movieService: MovieserviceService,private movieDbService: MoviesDBService  ) { }
@@ -31,7 +31,7 @@ export class DeleteModalComponent {
   }
   getMovies(id): void {
     this.movie=this.movieDbService.getmoviesbyid(id);
-       debugger;
+      
   }
 }
   

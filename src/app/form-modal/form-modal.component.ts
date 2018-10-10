@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovieserviceService } from '../services/movieservice.service';
 import { MoviesDBService } from '../services/movies-db.service';
+import { Movie } from '../movie';
 
 @Component({
   selector: 'app-form-modal',
@@ -13,7 +14,7 @@ import { MoviesDBService } from '../services/movies-db.service';
 export class FormModalComponent {
 
   @Input() id: number;
-  isNotEmpty: bool;
+  isNotEmpty: boolean ;
   movie: Movie;
   moadleTitle: string;
   constructor(  public activeModal: NgbActiveModal,private movieService: MovieserviceService,private movieDbService: MoviesDBService  ) { }
@@ -25,7 +26,7 @@ export class FormModalComponent {
       this.moadleTitle="Edit Movie";
     }
     else{
-      this.movie= new Object();
+      this.movie= new Movie();
        this.moadleTitle="Add Movie";
     }
   }
@@ -67,7 +68,7 @@ export class FormModalComponent {
   }
   getMovies(id): void {
     this.movie=this.movieDbService.getmoviesbyid(id);
-       debugger;
+
   }
 }
   
